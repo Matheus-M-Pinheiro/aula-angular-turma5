@@ -1,4 +1,4 @@
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { VagasService } from '../../services/vagas-service';
 import { PedidoVaga } from '../../models/pedido-vaga';
 
@@ -8,7 +8,7 @@ import { PedidoVaga } from '../../models/pedido-vaga';
   templateUrl: './lista-vagas.html',
   styleUrl: './lista-vagas.scss',
 })
-export class ListaVagas {
+export class ListaVagas implements OnInit {
 
   contador: WritableSignal<number> = signal(0);
 
@@ -17,6 +17,10 @@ export class ListaVagas {
   pedidoVagas: WritableSignal<PedidoVaga[]> = signal([])
 
   constructor(private vagasService: VagasService){}
+
+  ngOnInit(): void {
+    this.carregarPedidos()
+  }
 
   add():void {
     this.contador.update( valorAntigo => valorAntigo + 1)
