@@ -2,9 +2,12 @@ import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { VagasService } from '../../services/vagas-service';
 import { PedidoVaga } from '../../models/pedido-vaga';
 
+// Para utilizar o Pipe de data
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-lista-vagas',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './lista-vagas.html',
   styleUrl: './lista-vagas.scss',
 })
@@ -35,6 +38,11 @@ export class ListaVagas implements OnInit {
         console.log(error)
       }
     })
+  }
+
+  converteData(iso: string): string{
+    let d = new Date(iso)
+    return d.toLocaleDateString('pt-br')
   }
 
 }

@@ -21,12 +21,48 @@
     }
 </div>
 
+<!-- 
 <div>
     <button type="button" (click)="carregarPedidos()">
         Chamada
     </button>
-</div>
+</div> -->
 
+<h3>
+    Tabela de vagas
+</h3>
 <div>
-    {{ pedidoVagas() }}
+    <table>
+        <thead>
+            <tr>
+                <th>Vaga</th>
+                <th>Gestor</th>
+                <th>Data da solicitação</th>
+                <th>Quantidade</th>
+                <th>Motivo</th>
+                <th>Requisitos</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(pedido of pedidoVagas(); track $index){
+            <tr>
+                <td>{{ pedido.titulo }}</td>
+                <td>{{ pedido.gestorId }}</td>
+                <!-- Com o retorno de um método -->
+                <!-- <td>{{ converteData(pedido.dataSolicitacao) }}</td> -->
+                <!-- Utilizando Pipe do Commom Module -->
+                <td>{{ pedido.dataSolicitacao | date:'dd/MM/yyyy' }}</td>
+                <td>{{ pedido.quantidade }}</td>
+                <td>{{ pedido.motivo }}</td>
+                <td>
+                    @for(req of pedido.requisitos; track $index){
+                        <p>{{req}}</p>
+                    }
+                </td>
+                <td>{{ pedido.aprovacao }}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
 </div>
