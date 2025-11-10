@@ -45,10 +45,12 @@
             <tr>
                 <td>{{ pedido.titulo }}</td>
                 <td>{{ buscaGestor(pedido.gestorId) }}</td>
+                
                 <!-- Com o retorno de um método -->
                 <!-- <td>{{ converteData(pedido.dataSolicitacao) }}</td> -->
                 <!-- Utilizando Pipe do Commom Module -->
                 <td>{{ pedido.dataSolicitacao | date:'dd/MM/yyyy' }}</td>
+
                 <td>{{ pedido.quantidade }}</td>
                 <td>{{ pedido.motivo }}</td>
                 <td>

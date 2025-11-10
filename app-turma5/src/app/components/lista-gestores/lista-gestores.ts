@@ -15,7 +15,6 @@ export class ListaGestores implements OnInit {
   gestores: WritableSignal<TipoGestor[]> = signal([])
   dptos: WritableSignal<TipoDepartamento[]> = signal([])
 
-
   constructor(
     private apiGestor: GestorService,
     private apiDpto: DepartamentoService
