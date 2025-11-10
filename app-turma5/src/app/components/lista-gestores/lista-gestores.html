@@ -1,0 +1,25 @@
+<h3>
+    Tabela de vagas
+</h3>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Cargo</th>
+                <th>Departamento</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(gestor of gestores(); track $index){
+            <tr>
+                <td>{{ gestor.nome }}</td>
+                <td>{{ gestor.email }}</td>
+                <td>{{ gestor.cargo }}</td>
+                <td>{{ buscaDpto(gestor.departamentoId) }}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
