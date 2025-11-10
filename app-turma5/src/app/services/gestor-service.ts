@@ -19,4 +19,12 @@ export class GestorService {
     return this.api.get<TipoGestor>(this.url + id)
   }
 
+  postCriaGestor(obj: TipoGestor): Observable<TipoGestor>{
+    return this.api.post<TipoGestor>(this.url, obj, {
+      headers: {
+        'Content-Type': 'json-application'
+      }
+    })
+  }
+
 }

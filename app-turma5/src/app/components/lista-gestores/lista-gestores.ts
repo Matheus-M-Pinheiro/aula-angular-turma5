@@ -4,9 +4,14 @@ import { GestorService } from '../../services/gestor-service';
 import { DepartamentoService } from '../../services/departamento-service';
 import { TipoDepartamento } from '../../models/tipo-departamento';
 
+import Swal from 'sweetalert2';
+
+import { FormsModule } from '@angular/forms';
+import { Botao } from '../master/botao/botao';
+
 @Component({
   selector: 'app-lista-gestores',
-  imports: [],
+  imports: [FormsModule, Botao],
   templateUrl: './lista-gestores.html',
   styleUrl: './lista-gestores.scss',
 })
@@ -14,6 +19,12 @@ export class ListaGestores implements OnInit {
 
   gestores: WritableSignal<TipoGestor[]> = signal([])
   dptos: WritableSignal<TipoDepartamento[]> = signal([])
+  gestorNovo: TipoGestor = {
+    nome: '',
+    email: '',
+    cargo: '',
+    departamentoId: '',
+  }
 
   constructor(
     private apiGestor: GestorService,
@@ -52,6 +63,27 @@ export class ListaGestores implements OnInit {
     } else {
       return 'N/A'
     }
+  }
+
+  deletarGestor(item: TipoGestor): void{
+    console.log(item)
+  }
+
+  criaGestor(): void{
+    console.log(this.gestorNovo)
+    this.apiGestor.postCriaGestor(this.gestorNovo).subscribe({
+      next: gestorCriado => {
+        console.log(gestorCriado)
+        Swal.fire({
+          title: 'Gestor criado',
+          icon: 'success'
+        }).then( () => {
+          this.carregaGestores()
+        })
+      }, error: error => {
+        console.log(error)
+      }
+    })
   }
 
 }
